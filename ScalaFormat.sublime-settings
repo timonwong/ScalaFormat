@@ -1,5 +1,5 @@
 {
-    "format_on_save": false,
+    "autoformat_on_save": false,
     "scalariform": {
         // Enable/disable Align parameters on different lines in the same column
         "alignParameters": false,

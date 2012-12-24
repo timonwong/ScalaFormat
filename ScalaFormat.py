@@ -92,8 +92,8 @@ class ScalaFormatCommand(sublime_plugin.TextCommand):
 
 
 class PluginEventListener(sublime_plugin.EventListener):
-    def on_post_save(self, view):
-        if SETTINGS.get('format_on_save', False):
+    def on_pre_save(self, view):
+        if is_enabled_in_view(view) and SETTINGS.get('autoformat_on_save', False):
             view.run_command('scala_format')
 
     def on_query_context(self, view, key, operator, operand, match_all):
