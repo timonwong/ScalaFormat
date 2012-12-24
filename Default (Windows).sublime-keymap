@@ -1,0 +1,6 @@
+[
+    {
+        "keys": ["ctrl+alt+f"], "command": "scala_format",
+        "context": [{"key": "scala_format_is_enabled", "operator": "equal", "operand": ""}]
+    }
+]
