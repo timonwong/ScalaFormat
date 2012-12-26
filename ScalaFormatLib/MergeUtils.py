@@ -1,4 +1,6 @@
-# borrowed from GoSublime
+# Borrowed from GoSublime
+# Copyright (c) 2012 The GoSublime Authors
+
 import sublime
 from diff_match_patch.diff_match_patch import diff_match_patch
 

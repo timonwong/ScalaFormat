@@ -1,6 +1,10 @@
 {
+    // If the executable is not in the system path, you may have to set the java executable manually
     "java_executable": "java",
+    // Auto format on file save
     "autoformat_on_save": false,
+    // scalariform command line options - preferences
+    // https://github.com/mdr/scalariform/wiki/Command-line-tool
     "scalariform": {
         // Enable/disable Align parameters on different lines in the same column
         "alignParameters": false,
@@ -32,7 +36,7 @@
         "placeScaladocAsterisksBeneathSecondAsterisk": false,
         // Enable/disable Preserve a space before a parenthesis argument
         "preserveSpaceBeforeArguments": false,
-        // Enable/disable Replace arrow tokens with unicode, equivalents: => with ???, and <- with ???
+        // Enable/disable Replace arrow tokens with unicode, equivalents: => with ⇒, and <- with ←
         "rewriteArrowSymbols": false,
         // Enable/disable Add a space before colons
         "spaceBeforeColon": false,
