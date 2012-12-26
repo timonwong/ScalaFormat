@@ -1,5 +1,5 @@
 [
-    { "caption": "-" },
+    { "caption": "-", "id": "file" },
     {
         "caption": "ScalaFormat",
         "children":

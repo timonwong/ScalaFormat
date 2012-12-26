@@ -34,9 +34,10 @@ class ScalaFormatCommand(sublime_plugin.TextCommand):
         view = self.view
         region = sublime.Region(0, view.size())
         code = view.substr(region)
-        cmd = ['java', '-Dfile.encoding=utf-8', '-jar']
-        cmd.append(self.get_scalariform_path())
+        cmd = [self.get_java_executable(), '-Dfile.encoding=utf-8', '-jar',
+               self.get_scalariform_executable()]
         cmd.extend(self.get_scalariform_args())
+        proc = None
         try:
             proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE, startupinfo=self.get_startupinfo())
@@ -51,12 +52,10 @@ class ScalaFormatCommand(sublime_plugin.TextCommand):
                 if err:
                     sublime.error_message("%s: Merge failure: '%s'" % (PLUGIN_NAME, err))
                 sublime.status_message('Scalariform: Done')
-        except Exception as e:
-            print e
-            if proc.poll() is None:
+        except:
+            if proc and proc.poll() is None:
                 proc.terminate()
-            log.error('Error while executing scalariform, please first make sure java ' +
-                      'binary is in your $PATH, and then check your ScalaFormat settings')
+            log.error('Error while executing scalariform, please check your ScalaFormat settings')
 
     def get_startupinfo(self):
         if os.name != 'nt':
@@ -73,7 +72,10 @@ class ScalaFormatCommand(sublime_plugin.TextCommand):
                 return path.encode(encoding)
         return path
 
-    def get_scalariform_path(self):
+    def get_java_executable(self):
+        return self.get_reasonable_path(SETTINGS.get('java_executable', 'java'))
+
+    def get_scalariform_executable(self):
         path = os.path.join(__path__, 'scalariform.jar')
         return self.get_reasonable_path(path)
 
