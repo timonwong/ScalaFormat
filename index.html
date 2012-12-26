@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Scalaformat by timonwong</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Scalaformat</h1>
+        <h2>Yet another Scala code formatter for Sublime Text 2</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/timonwong/ScalaFormat/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/timonwong/ScalaFormat/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/timonwong/ScalaFormat" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>ScalaFormat</h1>
+
+<h2>Summary</h2>
+
+<p>ScalaFormat is a scala code formatter plugin for <a href="http://www.sublimetext.com/">Sublime Text 2</a>. It is rewritten
+from <a href="https://github.com/ikeike443">Takafumi Ikeda</a>'s <a href="https://github.com/ikeike443/Sublime-Scalariform">Sublime Scalariform</a> plugin, with following enhancements:</p>
+
+<ul>
+<li>Formatting buffer instead of formatting source file directly.</li>
+<li>Auto format on file save support (disabled by default).</li>
+</ul><h2>Prerequisites</h2>
+
+<ul>
+<li>Java™ 5 or later.</li>
+<li>Patience - It may take a few seconds before scalariform finished.</li>
+</ul><h2>Installation</h2>
+
+<h3>With the Package Control plugin</h3>
+
+<p>TBD</p>
+
+<h3>Manual Install</h3>
+
+<p><strong>Without Git:</strong>
+<a href="https://github.com/timonwong/ScalaFormat">Download</a> the latest source code, and
+extract to the Packages directory.</p>
+
+<p><strong>With Git:</strong>
+Type the following command in your Sublime Text 2 Packages directory:</p>
+
+<p><code>git clone git://github.com/timonwong/ScalaFormat.git</code></p>
+
+<p>The "Packages" directory is located at:</p>
+
+<ul>
+<li>
+<strong>Windows:</strong>  <code>%APPDATA%\Sublime Text 2\Packages\</code>
+</li>
+<li>
+<strong>Linux:</strong>    <code>~/.config/sublime-text-2/Packages/</code>
+</li>
+<li>
+<strong>OS X:</strong>     <code>~/Library/Application Support/Sublime Text 2/Packages/</code>
+</li>
+</ul><h2>Usage</h2>
+
+<h3>Key Bindings</h3>
+
+<p>The default key bindings for this plugin:</p>
+
+<ul>
+<li>
+<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F</kbd>: Format current file.</li>
+</ul><h3>Command Palette</h3>
+
+<p>Open the command palette, it apperas as <code>ScalaFormat: Format Current File</code>.</p>
+
+<h2>Settings</h2>
+
+<div class="highlight"><pre><span class="p">{</span>
+    <span class="c1">// If the executable is not in the system path, you may have to set the java executable manually</span>
+    <span class="s2">"java_executable"</span><span class="o">:</span> <span class="s2">"java"</span><span class="p">,</span>
+    <span class="c1">// Auto format on file save</span>
+    <span class="s2">"autoformat_on_save"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="c1">// scalariform command line options - preferences</span>
+    <span class="c1">// https://github.com/mdr/scalariform/wiki/Command-line-tool</span>
+    <span class="s2">"scalariform"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="c1">// Enable/disable Align parameters on different lines in the same column</span>
+        <span class="s2">"alignParameters"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Align the arrows of consecutive single-line case statements</span>
+        <span class="s2">"alignSingleLineCaseStatements"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Set Maximum number of spaces inserted before an arrow to align case statements: [1-100]</span>
+        <span class="s2">"alignSingleLineCaseStatements.maxArrowIndent"</span><span class="o">:</span> <span class="mi">40</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Compact Control Readability style</span>
+        <span class="s2">"compactControlReadability"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Omit spaces when formatting a '+' operator on String literals</span>
+        <span class="s2">"compactStringConcatenation"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Double indent either a class's parameters or its inheritance list</span>
+        <span class="s2">"doubleIndentClassDeclaration"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Format XML literals</span>
+        <span class="s2">"formatXml"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Indent local defs an extra level</span>
+        <span class="s2">"indentLocalDefs"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Indent package blocks</span>
+        <span class="s2">"indentPackageBlocks"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="c1">// Set Number of spaces to use for indentation: [1-10]</span>
+        <span class="s2">"indentSpaces"</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Use a tab character for indentation</span>
+        <span class="s2">"indentWithTabs"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Start multiline Scaladoc comment body on same line as the opening '/**'</span>
+        <span class="s2">"multilineScaladocCommentsStartOnFirstLine"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Allow a newline before a ')' in an argument expression</span>
+        <span class="s2">"preserveDanglingCloseParenthesis"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Place Scaladoc asterisks beneath the second asterisk in the opening '/**', as opposed to the first</span>
+        <span class="s2">"placeScaladocAsterisksBeneathSecondAsterisk"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Preserve a space before a parenthesis argument</span>
+        <span class="s2">"preserveSpaceBeforeArguments"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Replace arrow tokens with unicode, equivalents: =&gt; with ⇒, and &lt;- with ←</span>
+        <span class="s2">"rewriteArrowSymbols"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Add a space before colons</span>
+        <span class="s2">"spaceBeforeColon"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Require a space after '[' and before ']'</span>
+        <span class="s2">"spaceInsideBrackets"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Require a space after '(' and before ')'</span>
+        <span class="s2">"spaceInsideParentheses"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// Enable/disable Add a space around the @ token in pattern binders</span>
+        <span class="s2">"spacesWithinPatternBinders"</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h1>What's New</h1>
+
+<p>v1.0 (TBD)</p>
+
+<ul>
+<li>First release.</li>
+</ul><h2>License</h2>
+
+<p>This plugin released under MIT License:</p>
+
+<pre><code>Copyright (c) 2012 Timon Wong
+Portions Copyright (c) 2012 Takafumi Ikeda
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</code></pre>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
