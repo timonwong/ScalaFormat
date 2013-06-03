@@ -4,13 +4,14 @@ ScalaFormat
 Summary
 -------
 
-ScalaFormat is a scala code formatter plugin for [Sublime Text 2]. It is rewritten
+ScalaFormat is a scala code formatter plugin for [Sublime Text]. It is rewritten
 from [Takafumi Ikeda]'s [Sublime Scalariform] plugin, with following enhancements:
 
 * Formatting buffer instead of formatting source file directly.
 * Auto format on file save support (disabled by default).
+* Sublime Text 3 support.
 
-[Sublime Text 2]: http://www.sublimetext.com/
+[Sublime Text]: http://www.sublimetext.com/
 [Takafumi Ikeda]: https://github.com/ikeike443
 [Sublime Scalariform]: https://github.com/ikeike443/Sublime-Scalariform
 
@@ -19,16 +20,30 @@ Prerequisites
 -------------
 
 * Java™ 5 or later.
-* Patience - It may take a few seconds before scalariform finished.
+* Patience :) - It may take a few seconds before scalariform finished.
 
 
 Installation
 ------------
 
 ### With the Package Control plugin
-TBD
+
+The easiest way to install ScalaFormat is through [Package Control].
+
+[Package Control]: http://wbond.net/sublime_packages/package_control
+
+Once you have Package Control installed, restart Sublime Text.
+
+1. Bring up the Command Palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+   under Windows and Linux; <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> under OS X).
+2. Type "Install" and select "Package Control: Install Package".
+3. Select "ScalaFormat" from list.
+
+The advantage of using Package Control is that it will keep ScalaFormat up to
+date automatically.
 
 ### Manual Install
+
 **Without Git:**
 [Download](https://github.com/timonwong/ScalaFormat) the latest source code, and
 extract to the Packages directory.
@@ -48,11 +63,13 @@ Usage
 -----
 
 ### Key Bindings
+
 The default key bindings for this plugin:
 
 * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F</kbd>: Format current file.
 
 ### Command Palette
+
 Open the command palette, it apperas as `ScalaFormat: Format Current File`.
 
 Settings
@@ -114,7 +131,12 @@ Settings
 What's New
 ==========
 
-v1.0 (TBD)
+v1.1 (June 3, 2013)
+
+* Add support for Sublime Text 3.
+* Updated scalariform excutable.
+
+v1.0
 
 * First release.
 
@@ -123,7 +145,7 @@ License
 
 This plugin released under MIT License:
 
-    Copyright (c) 2012 Timon Wong
+    Copyright (c) 2012-2013 Timon Wong
     Portions Copyright (c) 2012 Takafumi Ikeda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of

@@ -1,0 +1,8 @@
+{
+    "repo": "ScalaFormat",
+    "name": "ScalaFormat",
+    "description": "Yet another Scala code formatter for Sublime Text.",
+    "author": "timonwong",
+    "homepage": "http://timonwong.github.io/ScalaFormat/",
+    "platforms": ["*"]
+}
