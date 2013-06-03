@@ -2,20 +2,37 @@
 
 import sublime
 import sublime_plugin
-import re
-import os
+
 import locale
+import os
+import re
 import subprocess
-from ScalaFormatLib.MergeUtils import merge_code
-from ScalaFormatLib import log
+import sys
+
+PY3K = sys.version_info >= (3, 0, 0)
+
+if PY3K:
+    from .ScalaFormatLib.MergeUtils import merge_code
+    from .ScalaFormatLib import log
+else:
+    from ScalaFormatLib.MergeUtils import merge_code
+    from ScalaFormatLib import log
 
 
 __file__ = os.path.normpath(os.path.abspath(__file__))
 __path__ = os.path.dirname(__file__)
 
 PLUGIN_NAME = 'ScalaFormat'
-SETTINGS = sublime.load_settings(PLUGIN_NAME + '.sublime-settings')
 LANGUAGE_RE = re.compile(r'(?<=source\.)[\w+#]+')
+SETTINGS = None
+
+
+def plugin_loaded():
+    global SETTINGS
+    SETTINGS = sublime.load_settings("JsFormat.sublime-settings")
+
+if not PY3K:
+    plugin_loaded()
 
 
 def is_enabled_in_view(view):
@@ -66,7 +83,7 @@ class ScalaFormatCommand(sublime_plugin.TextCommand):
         return info
 
     def get_reasonable_path(self, path):
-        if os.name == 'nt':  # On Windows, popen won't support unicode args (Python 2.x)
+        if not PY3K and os.name == 'nt':  # On Windows, popen won't support unicode args (Python 2.x)
             if isinstance(path, unicode):
                 encoding = locale.getpreferredencoding()
                 return path.encode(encoding)
