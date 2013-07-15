@@ -131,6 +131,10 @@ Settings
 What's New
 ==========
 
+v1.1.1 (July 15, 2013)
+
+* Fix compatibility with Sublime Text 3 and Packge Control.
+
 v1.1 (June 3, 2013)
 
 * Add support for Sublime Text 3.
