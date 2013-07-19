@@ -1,0 +1,8 @@
+ScalaFormat 1.2.0 Changelog:
+
+
+* Fix custom settings that did't work at all.
+* Less error-prone default options overriding (You don't need to duplicate whole
+  'scalariform' section before customizing now, default options in 'scalariform'
+  section will be retrieved automatically).
+* Add per-project setting support.

@@ -79,6 +79,8 @@ Settings
 {
     // If the executable is not in the system path, you may have to set the java executable manually
     "java_executable": "java",
+    // Absolute path to your scalariform binary, leave null to use the one shipped with this plugin
+    "scalariform_jar": null,
     // Auto format on file save
     "autoformat_on_save": false,
     // scalariform command line options - preferences
@@ -128,8 +130,41 @@ Settings
 }
 ```
 
+### Per-project setting
+
+Before starting, you may want to have a look at ScalaFormat.sublime-settings.
+
+To edit your project setting, select Project/Edit Project from main menu. A project setting contains per-project settings for ScalaFormat should look like this:
+
+```javascript
+{
+    // project folders, etc
+    // ...
+    // project settings
+    "settings":
+    {
+        "ScalaFormat":
+        {
+            "autoformat_on_save": true,
+            "scalariform": {
+                "alignParameters": true,
+                "rewriteArrowSymbols": true
+            }
+        }
+    }
+}
+```
+
 What's New
 ==========
+
+v1.2.0 (July 19, 2013)
+
+* Fix custom settings that did't work at all.
+* Less error-prone default options overriding (You don't need to duplicate whole
+  'scalariform' section before customizing now, default options in 'scalariform'
+  section will be retrieved automatically).
+* Add per-project setting support.
 
 v1.1.1 (July 15, 2013)
 
