@@ -1,6 +1,8 @@
 {
     // If the executable is not in the system path, you may have to set the java executable manually
     "java_executable": "java",
+    // Absolute path to your scalariform binary, leave null to use the one shipped with this plugin
+    "scalariform_jar": null,
     // Auto format on file save
     "autoformat_on_save": false,
     // scalariform command line options - preferences

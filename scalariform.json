@@ -1,0 +1,22 @@
+{
+    "spaceBeforeColon": false,
+    "alignSingleLineCaseStatements": false,
+    "multilineScaladocCommentsStartOnFirstLine": false,
+    "alignParameters": false,
+    "compactControlReadability": false,
+    "alignSingleLineCaseStatements.maxArrowIndent": 40,
+    "indentWithTabs": false,
+    "doubleIndentClassDeclaration": false,
+    "indentSpaces": 2,
+    "formatXml": true,
+    "compactStringConcatenation": false,
+    "indentPackageBlocks": true,
+    "spaceInsideParentheses": false,
+    "placeScaladocAsterisksBeneathSecondAsterisk": false,
+    "spacesWithinPatternBinders": true,
+    "indentLocalDefs": false,
+    "spaceInsideBrackets": false,
+    "preserveDanglingCloseParenthesis": false,
+    "rewriteArrowSymbols": false,
+    "preserveSpaceBeforeArguments": false
+}

@@ -3,6 +3,7 @@
 import sublime
 import sublime_plugin
 
+import json
 import locale
 import os
 import re
@@ -27,12 +28,33 @@ LANGUAGE_RE = re.compile(r'(?<=source\.)[\w+#]+')
 SETTINGS = None
 
 
+with open(os.path.join(__path__, 'scalariform.json')) as fp:
+    SCALARIFORM_PREFS_DEFAULT = json.load(fp)
+
+
 def plugin_loaded():
     global SETTINGS
-    SETTINGS = sublime.load_settings("JsFormat.sublime-settings")
+    SETTINGS = sublime.load_settings(PLUGIN_NAME + '.sublime-settings')
 
 if not PY3K:
     plugin_loaded()
+
+
+def get_setting_view(view, key, default=None):
+    try:
+        settings = view.settings()
+        sub_key = PLUGIN_NAME
+        if settings.has(sub_key):
+            proj_settings = settings.get(sub_key)
+            if key in proj_settings:
+                return proj_settings[key]
+    except:
+        pass
+    return SETTINGS.get(key, default)
+
+
+def get_setting_for_active_view(key, default=None):
+    return get_setting_view(sublime.active_window().active_view(), key, default)
 
 
 def is_enabled_in_view(view):
@@ -44,6 +66,9 @@ def is_enabled_in_view(view):
 
 
 class ScalaFormatCommand(sublime_plugin.TextCommand):
+    def get_setting(self, key, default=None):
+        return get_setting_view(self.view, key, default=default)
+
     def is_enabled(self):
         return is_enabled_in_view(self.view)
 
@@ -72,7 +97,7 @@ class ScalaFormatCommand(sublime_plugin.TextCommand):
         except:
             if proc and proc.poll() is None:
                 proc.terminate()
-            log.error('Error while executing scalariform, please check your ScalaFormat settings')
+            log.error('Error while executing scalariform, please check your %s settings' % PLUGIN_NAME)
 
     def get_startupinfo(self):
         if os.name != 'nt':
@@ -90,14 +115,19 @@ class ScalaFormatCommand(sublime_plugin.TextCommand):
         return path
 
     def get_java_executable(self):
-        return self.get_reasonable_path(SETTINGS.get('java_executable', 'java'))
+        return self.get_reasonable_path(self.get_setting('java_executable', default='java'))
 
     def get_scalariform_executable(self):
-        path = os.path.join(__path__, 'scalariform.jar')
+        path = self.get_setting('scalariform_jar', default=None)
+        if path is None:
+            path = os.path.join(__path__, 'scalariform.jar')
         return self.get_reasonable_path(path)
 
     def get_scalariform_args(self):
-        scalariform_prefs = SETTINGS.get('scalariform', {})
+        scalariform_prefs = SCALARIFORM_PREFS_DEFAULT.copy()
+        scalariform_prefs_override = self.get_setting('scalariform', default={})
+        scalariform_prefs.update(scalariform_prefs_override)
+
         args = ['--encoding=utf-8']
         for k, v in scalariform_prefs.items():
             if k == 'encoding':
@@ -112,7 +142,7 @@ class ScalaFormatCommand(sublime_plugin.TextCommand):
 
 class PluginEventListener(sublime_plugin.EventListener):
     def on_pre_save(self, view):
-        if is_enabled_in_view(view) and SETTINGS.get('autoformat_on_save', False):
+        if is_enabled_in_view(view) and get_setting_for_active_view('autoformat_on_save', default=False):
             view.run_command('scala_format')
 
     def on_query_context(self, view, key, operator, operand, match_all):
