@@ -1,6 +1,8 @@
 ScalaFormat
 ============
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/timonwong/ScalaFormat.svg)](https://greenkeeper.io/)
+
 Summary
 -------
 
